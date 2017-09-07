@@ -1,0 +1,109 @@
+
+h1 {
+    font-size: 4em;
+    text-shadow: 2px 2px 10px black;
+}
+
+#landing-header {
+    /*z-index: forward/backward into space; 1 means its coming forward towards us;
+    all of the elements inside the landing-header div will be in front of bg images; will layer on top of any other content w/ z-index < 1*/
+    z-index: 1;
+    /*need to change position to relative to use z-index; default is static, which ignores z-index*/
+    position: relative;
+    text-align: center;
+    /*vh is view height; 40vh centers content vertically */
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow { 
+    position: fixed;
+    /*will take up entire page */
+    width: 100%;
+    height: 80%;
+    /*top left corner of page with top and left having position 0*/
+    top: 10;
+    left: 10;
+    /*z-index: 0 will make sure background images are behind the other content, like the yelpcamp text and campground button */
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*cover allows the images to take up the entire space of the page */
+    background-size: 80%;
+    /*50% 50% will center images perfectly on page */
+    background-position: 50% 50%;
+    /*no repeat vertically or horizontally of any background image */
+    background-repeat: no-repeat;
+    /*opacity: 0 makes our images start out faded */
+    opacity: 0;
+    z-index: 0;
+    /*allow us to fade the images in and out; 
+    imageAnimation is the name; lasts 50s; linear means the animation runs at the same speed from beg to end; loop infinitely */
+    animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+    background-image: url(http://i.imgur.com/K3mPv14.jpg); 
+}
+.slideshow li:nth-child(2) { 
+    background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+    /*animation-delay makes sure it they all fire off one after the other in 10 sec intervals*/
+    animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+    background-image: url(http://i.imgur.com/emvhOnb.jpg);
+    animation-delay: 20s; 
+    }
+.slideshow li:nth-child(4) { 
+    background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+    animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+    background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+    animation-delay: 40s; 
+}
+
+@keyframes imageAnimation { 
+    /*From 0% to 10% (the beginning of our animation) the list item begins changing it's opacity from 0 to 1 (invisible to visible)*/
+    /*the animation-timing-function is set to ease-in at 0% and ease-out and 10%, this makes for a more smooth fade-in*/
+    0% { 
+        opacity: 0; 
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    /*The list item's opacity then stays at 1 until it reaches 20% at which point it fades back out, 
+    reaching 0 at 30% and staying at 0 for the remainder of the animation*/
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+    /*5 bg images visible for 5 secs each;
+    the time it takes to fade the image in and keep it visible is 10 secs with a 5 sec crossfade/fadeout into the next image;
+    The entire animation cycle for all 5 images takes 50 seconds total*/
+    /*100% divided by 5 is 20% so each image's fadein and visibility should last 20% of the cycle; 
+    half of 20% is 10%, that is why our fade in is from 0% to 10%, 
+    then we keep it visible until 20% is reached and begin the fadeout from 20% to 30%, 
+    the 5 second fadeout overlaps the next image's 5 second fadein, which is what creates the crossfade effect*/
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+    opacity: 1;
+}

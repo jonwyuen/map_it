@@ -1,0 +1,112 @@
+body {
+	height: 100%;
+	width: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  background: #abbaab;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffffff, #abbaab);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffffff, #abbaab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+ 
+/*  text-align: center;*/
+}
+
+/*.navbar {
+	color: white;
+	background-color: green;
+	min-height: 15px;
+	padding-right: 10px;
+}
+
+.navbar-brand {
+	color: white;
+	font-size: 200%;
+	font-family: 'Lobster', 'Roboto';
+	margin: 0;
+	padding: 15px;
+}*/
+
+
+
+.navbar {
+  background-color: green;
+  font-family: Lobster;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+ 
+ .navbar-default ul.navbar-nav li a, .navbar-default .navbar-brand {
+  color: white;
+  font-size: 200%;
+}
+
+.navbar-default ul.dropdown-menu li a {
+  color: black;
+  font-size: 150%;
+}
+
+.navbar .navbar-nav li > a {
+  font-size: 150%;
+}
+
+table {
+  border: 2px solid green;
+  font-family: Lobster;
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+
+.table>thead>tr>th {
+  border-bottom: 2px solid green;
+}
+
+tr {
+  border: 2px solid green;
+  font-size: 18px;
+  background-color: transparent;
+}
+
+#table-header {
+  text-align: center;
+  font-family: Lobster;
+  color: green;
+}
+
+.help-block {
+  color: red;
+}
+
+.forms {
+  background: rgba(230, 230, 230, 0.7);
+  border: 2px solid green;
+  border-radius: 10px;
+  margin-top: 50px;
+  padding-bottom: 20px;
+}
+
+.form-header {
+  color: green;
+  font-family: Lobster;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+/*.form-label {
+  color: green;
+}*/
+
+.btn-outline {
+  font-family: Lobster;
+  font-size: 150%;
+  text-align: center;
+  background: none;
+  color: green;
+  border: 2px solid green;
+  margin-top: 10px;
+}
+
+#empty-heart {
+  color: white;
+}

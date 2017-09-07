@@ -1,0 +1,10 @@
+{% extends '/base.html' %}
+{% block content %}
+
+  <h1>Welcome back {{ current_user.username }}</h1>
+
+  <button><a href="{{ url_for('users.show', user_id=current_user.id) }}">Profile</a></button>
+  <button><a href="{{ url_for('favorites.index', user_id=current_user.id) }}">Favorite Locations</a></button>
+  <button><a href="{{ url_for('users.logout') }}">Log Out</a></button>
+
+{% endblock %}

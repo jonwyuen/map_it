@@ -1,0 +1,36 @@
+{% extends '/base.html' %}
+{% block content %}
+
+  <div class="container">
+    <h1 id="table-header">Favorite Locations</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>MapIt</th>
+          <th>Unfavorite</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for favorite in user.favorites %}
+        <tr>
+          <td>{{ favorite.location }}</td>
+          <td>{{ favorite.latitude }}</td>
+          <td>{{ favorite.longitude }}</td>
+          <td><a class="btn btn-success" href="{{ url_for('users.map', user_id=user.id, loc=favorite.location, lat=favorite.latitude, long=favorite.longitude) }}">MapIt</a></td>
+          <td>
+           <form action="{{ url_for('favorites.show', user_id=user.id, fav_id=favorite.id) }}?_method=DELETE" method="POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+              <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-heart" id="empty-heart"></span></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
+
