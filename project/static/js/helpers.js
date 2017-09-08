@@ -12,7 +12,7 @@ function initMap(lat, long, zoom) {
     zoomControl: true,
     streetViewControl: true
   });
-  map.setOptions({ minZoom: 3, maxZoom: 15 });
+  map.setOptions({ minZoom: 3, maxZoom: 18 });
 };
 
 function parseQuery(qstr) {
