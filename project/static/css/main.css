@@ -2,64 +2,70 @@ body {
 	height: 100%;
 	width: 100%;
   margin: 0 auto;
+  font-family: 'Ubuntu', sans-serif;
   padding-top: 50px;
   background: #abbaab;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffffff, #abbaab);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ffffff, #abbaab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
- 
-/*  text-align: center;*/
 }
 
-/*.navbar {
-	color: white;
-	background-color: green;
-	min-height: 15px;
-	padding-right: 10px;
+
+.dropdown-menu {
+  background-color: green;
+  border: none;
 }
-
-.navbar-brand {
-	color: white;
-	font-size: 200%;
-	font-family: 'Lobster', 'Roboto';
-	margin: 0;
-	padding: 15px;
-}*/
-
 
 
 .navbar {
   background-color: green;
-  font-family: Lobster;
+  font-family: 'Lobster', cursive;
   border: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
  
- .navbar-default ul.navbar-nav li a, .navbar-default .navbar-brand {
+ .navbar-default .navbar-brand {
   color: white;
   font-size: 200%;
 }
 
-.navbar-default ul.dropdown-menu li a {
-  color: black;
+ .navbar-default ul.navbar-nav li a{
+    color: white;
+    font-size: 150%;
+ }
+
+ .navbar-default ul.navbar-nav li a:hover, .navbar-default .navbar-brand:hover {
+  color: green;
+  background-color: white;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color: green;
+  background-color: white;
+}
+
+.navbar-default ul.dropdown-menu li a:hover {
+  background-color: white;
+  color: green;
   font-size: 150%;
 }
 
-.navbar .navbar-nav li > a {
-  font-size: 150%;
+.navbar-default .navbar-nav>li>a {
+  margin-left: 20px;
 }
 
 table {
   border: 2px solid green;
-  font-family: Lobster;
-  font-size: 22px;
+/*  font-family: 'Ubuntu', sans-serif;
+*/  font-size: 22px;
   margin-top: 20px;
+
 }
 
 
 .table>thead>tr>th {
   border-bottom: 2px solid green;
+
 }
 
 tr {
@@ -68,15 +74,21 @@ tr {
   background-color: transparent;
 }
 
+
+.table>tbody>tr>td {
+  vertical-align: middle;
+}
+
 #table-header {
   text-align: center;
-  font-family: Lobster;
+  font-family: 'Lobster', cursive;
   color: green;
 }
 
 .help-block {
   color: red;
-}
+/*  font-family: 'Ubuntu', sans-serif;
+*/}
 
 .forms {
   background: rgba(230, 230, 230, 0.7);
@@ -88,17 +100,32 @@ tr {
 
 .form-header {
   color: green;
-  font-family: Lobster;
+  font-family: 'Lobster', cursive;
   padding-bottom: 10px;
   text-align: center;
 }
 
-/*.form-label {
-  color: green;
-}*/
+.alert.flash-msg {
+  margin-bottom: 0;
+/*  font-family: 'Ubuntu', sans-serif;
+*/}
+
+.well {
+  text-align: center;
+  border: 2px solid green;
+  border-radius: 10px;
+  background: rgba(230, 230, 230, 0.7);
+  margin-top: 30px;
+}
+
+.well-text{
+  color: black;
+  font-family: 'Lobster', cursive;
+  margin-top: 15px;
+}
 
 .btn-outline {
-  font-family: Lobster;
+  font-family: 'Lobster', cursive;
   font-size: 150%;
   text-align: center;
   background: none;
@@ -107,6 +134,23 @@ tr {
   margin-top: 10px;
 }
 
+#mapit-btn {
+  font-family: 'Lobster', cursive;
+}
+
 #empty-heart {
   color: white;
+}
+
+button a {
+  color: green;
+}
+
+button a:hover, button:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.delete-button {
+  color: red;
 }

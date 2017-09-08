@@ -1,81 +1,87 @@
-{% extends '/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
-  <h1>Sign Up</h1>
-
-  <form method="POST" action="{{url_for('users.signup')}}">
-    {{ form.csrf_token }}
-   <p>
-    {{ form.username.label }}: 
-    {{ form.username(placeholder="Username") }}
-     <span>
-       {% if form.username.errors %}
-         {% for error in form.username.errors %}
-           {{ error }}
-         {% endfor %}
-       {% endif %}
-     </span>
-   </p>
-   <p>
-    {{ form.email.label }}: 
-    {{ form.email(placeholder="Email") }}
-     <span>
-       {% if form.email.errors %}
-         {% for error in form.email.errors %}
-           {{ error }}
-         {% endfor %}
-       {% endif %}
-     </span>
-   </p>
-   <p>
-    {{ form.first_name.label }}: 
-    {{ form.first_name(placeholder="First Name") }}
-     <span>
-       {% if form.first_name.errors %}
-         {% for error in form.first_name.errors %}
-           {{ error }}
-         {% endfor %}
-       {% endif %}
-     </span>
-   </p>
-   <p>
-    {{ form.last_name.label }}: 
-    {{ form.last_name(placeholder="Last Name") }}
-     <span>
-       {% if form.last_name.errors %}
-         {% for error in form.last_name.errors %}
-           {{ error }}
-         {% endfor %}
-       {% endif %}
-     </span>
-   </p> 
-   <p>
-    {{ form.password.label }}: 
-    {{ form.password(placeholder="Password") }}
-     <span>
-       {% if form.password.errors %}
-         {% for error in form.password.errors %}
-           {{ error }}
-         {% endfor %}
-       {% endif %}
-     </span>
-  </p>
-  <p>
-    {{ form.confirm_password.label }}: 
-    {{ form.confirm_password(placeholder="Confirm Password") }}
-     <span>
-       {% if form.confirm_password.errors %}
-         {% for error in form.confirm_password.errors %}
-           {{ error }}
-         {% endfor %}
-       {% endif %}
-     </span>
-  </p> 
-  
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 forms">
     
-    <button type="submit">Sign Up</button>
-  </form>
+    <h2 class="form-header">Welcome to MapIt</h2>
+    <form method="POST" action="{{url_for('users.signup')}}">
+      {{ form.csrf_token }}
+       <div class="form-group">
+        {{ form.username.label }}: 
+        {{ form.username(placeholder="Username", class="form-control") }}
+         <span class="help-block">
+           {% if form.username.errors %}
+             {% for error in form.username.errors %}
+               {{ error }}
+             {% endfor %}
+           {% endif %}
+         </span>
+       </div>    
+      <div class="form-group">
+       {{ form.email.label }}: 
+       {{ form.email(placeholder="Email", class="form-control") }}
+        <span class="help-block">
+          {% if form.email.errors %}
+            {% for error in form.email.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div> 
+      <div class="form-group">
+       {{ form.first_name.label }}: 
+       {{ form.first_name(placeholder="First Name", class="form-control") }}
+        <span class="help-block">
+          {% if form.first_name.errors %}
+            {% for error in form.first_name.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div>
+      <div class="form-group">
+       {{ form.last_name.label }}: 
+       {{ form.last_name(placeholder="Last Name", class="form-control") }}
+        <span class="help-block">
+          {% if form.last_name.errors %}
+            {% for error in form.last_name.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div>
+      <div class="form-group">
+       {{ form.password.label }}: 
+       {{ form.password(placeholder="Password", class="form-control") }}
+        <span class="help-block">
+          {% if form.password.errors %}
+            {% for error in form.password.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div> 
+      <div class="form-group">
+       {{ form.confirm_password.label }}: 
+       {{ form.confirm_password(placeholder="Confirm Password", class="form-control") }}
+        <span class="help-block">
+          {% if form.confirm_password.errors %}
+            {% for error in form.confirm_password.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div> 
+      <div class="text-center">
+        <button class="btn btn-success btn-outline" type="submit">Sign Up</button>
+      </div>
+    </form>
+    </div>
+  </div>
+  
   <br>
-  <a href="{{ url_for('users.login')}}">Already have an account?</a>
-
+  <div class="text-center">
+    <button class="btn btn-success btn-outline"><a href="{{ url_for('users.login') }}">Already have an account?</a></button>
+  </div>
 {% endblock %}

@@ -26,7 +26,8 @@ app.register_blueprint(favorites_blueprint, url_prefix='/users/<int:user_id>/fav
 
 login_manager.init_app(app)
 login_manager.login_view = 'users.login'
-login_manager.login_message = 'Please log in!'
+login_manager.login_message = 'Login Required!' 
+login_manager.login_message_category = 'alert-danger'
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -1,57 +1,76 @@
-{% extends '/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 forms">
 
-  <h1>Edit Profile</h1>
-  <form action="{{ url_for('users.show', user_id=user.id) }}?_method=PATCH" method="POST">
-    {{ form.csrf_token }}
-     <p>
-      {{ form.username.label }}: 
-      {{ form.username(value=user.username) }}
-       <span>
-         {% if form.username.errors %}
-           {% for error in form.username.errors %}
-             {{ error }}
-           {% endfor %}
-         {% endif %}
-       </span>
-     </p>
-     <p>
-      {{ form.email.label }}: 
-      {{ form.email(value=user.email) }}
-       <span>
-         {% if form.email.errors %}
-           {% for error in form.email.errors %}
-             {{ error }}
-           {% endfor %}
-         {% endif %}
-       </span>
-     </p>
-     <p>
-      {{ form.first_name.label }}: 
-      {{ form.first_name(value=user.first_name) }}
-       <span>
-         {% if form.first_name.errors %}
-           {% for error in form.first_name.errors %}
-             {{ error }}
-           {% endfor %}
-         {% endif %}
-       </span>
-     </p>
-     <p>
-      {{ form.last_name.label }}: 
-      {{ form.last_name(value=user.last_name) }}
-       <span>
-         {% if form.last_name.errors %}
-           {% for error in form.last_name.errors %}
-             {{ error }}
-           {% endfor %}
-         {% endif %}
-       </span>
-     </p> 
+    <h2 class="form-header">Edit Account</h2>
+    <form action="{{ url_for('users.show', user_id=user.id) }}?_method=PATCH" method="POST">
+      {{ form.csrf_token }}
+       <div class="form-group">
+        {{ form.username.label }}: 
+        {{ form.username(value=user.username, class="form-control") }}
+         <span class="help-block">
+           {% if form.username.errors %}
+             {% for error in form.username.errors %}
+               {{ error }}
+             {% endfor %}
+           {% endif %}
+         </span>
+       </div>    
+      <div class="form-group">
+       {{ form.email.label }}: 
+       {{ form.email(value=user.email, class="form-control") }}
+        <span class="help-block">
+          {% if form.email.errors %}
+            {% for error in form.email.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div> 
+      <div class="form-group">
+       {{ form.first_name.label }}: 
+       {{ form.first_name(value=user.first_name, class="form-control") }}
+        <span class="help-block">
+          {% if form.first_name.errors %}
+            {% for error in form.first_name.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div>
+      <div class="form-group">
+       {{ form.last_name.label }}: 
+       {{ form.last_name(value=user.last_name, class="form-control") }}
+        <span class="help-block">
+          {% if form.last_name.errors %}
+            {% for error in form.last_name.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </div> 
+      <div class="text-center">
+        <button class="btn btn-success btn-outline" type="submit">Save Changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
 
-    <button type="submit">Edit Profile</button>
-  </form>
-  <br>
-  <a href="{{ url_for('users.index') }}">Back To Home Page</a>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 forms">
+
+    <h2 class="form-header">Delete Account</h2>
+
+  <div class="text-center">
+    <form action="{{ url_for('users.show', user_id=user.id) }}?_method=DELETE" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <button class="btn btn-danger btn-outline delete-button" type="submit">Delete</button>
+    </form>
+  <div class="text-center">
+
+    </div>
+  </div>
 
 {% endblock %}

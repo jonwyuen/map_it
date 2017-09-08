@@ -51,6 +51,6 @@ def show(user_id, fav_id):
             return render_template('users/show.html', user=user)
         db.session.delete(favorite)
         db.session.commit()
-        flash("Sucessfully removed favorite")
+        flash("Sucessfully removed favorite", "alert-info")
         return redirect(url_for('favorites.index', user_id=user.id))
     return render_template()

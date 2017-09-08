@@ -1,19 +1,28 @@
-{% extends '/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
-  <h1>Username: {{ user.username }}</h1>
-  <h3>Email: {{ user.email }}</h3>
-  <h3>Name: {{ user.first_name }} {{ user.last_name }}</h3>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <div class="well">
+        <h1 class="well-text">Welcome {{ user.first_name }},</h1>
+        <h3 class="well-text">you have {{ favorites|length }} favorite locations.</h3>
+        {% if favorites|length == 0 %}
+          <div class="text-center">
+            <button class="btn btn-success btn-outline"><a href="{{ url_for('users.map', user_id=user.id) }}">Start Mapping</a></button>
+          </div>
+        {% else %}
+          <div class="text-center">
+            <button class="btn btn-success btn-outline"><a href="{{ url_for('favorites.index', user_id=user.id) }}">View Favorite Locations</a></button>
+          </div>
+          <h4 class="well-text">Or</h4>
+          <div class="text-center">
+            <button class="btn btn-success btn-outline"><a href="{{ url_for('users.map', user_id=user.id) }}">Map More Locations</a></button>
+          </div>
+        {% endif %}
 
-  <span><button><a href="{{ url_for('favorites.index', user_id=user.id) }}">Favorite Locations</a></button></span>
-  <br>
-  <br>
+      </div>
+    </div>
+  </div>
+
   
-  <button><a href="{{ url_for('users.edit', user_id=user.id) }}">Edit Profile</a></button>
-  <form action="{{ url_for('users.show', user_id=user.id) }}?_method=DELETE" method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-    <button type="submit">Delete Account</button>
-  </form>
-  <button><a href="{{ url_for('users.index') }}">Back To Home Page</a></button>
-
 {% endblock %}

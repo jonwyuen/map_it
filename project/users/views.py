@@ -5,7 +5,7 @@ from project.users.forms import SignUpForm, LoginForm, UserEditForm, PasswordEdi
 from project.decorators import ensure_correct_user, ensure_authenticated
 from sqlalchemy.exc import IntegrityError
 from flask_wtf.csrf import validate_csrf, ValidationError
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 users_blueprint = Blueprint(
     'users',
@@ -16,7 +16,7 @@ users_blueprint = Blueprint(
 @users_blueprint.route('/')
 @login_required
 def index():
-    return render_template('users/index.html')
+    return redirect(url_for('users.show', user_id=current_user.id))
 
 @users_blueprint.route('/<int:user_id>/map')
 @login_required
@@ -34,10 +34,10 @@ def signup():
             db.session.add(user)
             db.session.commit()
             login_user(user,remember=True)
-            flash("Successfully signed up")  
-            return redirect(url_for('users.index'))
+            flash("Successfully signed up. Welcome to MapIt", "alert-success")  
+            return redirect(url_for('users.show', user_id=user.id))
         except IntegrityError:
-            flash("Username/email has already been registered")
+            flash("Username/email has already been registered", "alert-danger")
             return render_template('users/signup.html', form=form)
     return render_template('users/signup.html', form=form)
 
@@ -49,48 +49,48 @@ def login():
         authenticated_user = User.authenticate(form.data['username'], form.data['password'])
         if authenticated_user:
             login_user(authenticated_user,remember=True)
-            flash("Successfully logged in")
-            return redirect(url_for('users.index'))
+            flash("Successfully logged in", "alert-success")
+            return redirect(url_for('users.show', user_id=authenticated_user.id))
         else:
-            flash("Invalid Credentials")
+            flash("Invalid Credentials", "alert-danger")
     return render_template('users/login.html', form=form)
-
 
 @users_blueprint.route('/<int:user_id>', methods=['GET','PATCH','DELETE'])
 @login_required
 @ensure_correct_user
 def show(user_id):
     user = User.query.get_or_404(user_id)
-    form = UserEditForm(request.form)
     if request.method == b'PATCH':
+        form = UserEditForm(request.form)
         if form.validate():
             try:
                 user.username = form.data['username']
                 user.email = form.data['email']
                 user.first_name = form.data['first_name']
                 user.last_name = form.data['last_name']
-                user.password = bcrypt.generate_password_hash(form.data['password']).decode('UTF-8')
                 db.session.add(user)
                 db.session.commit()
-                flash("Successfully edited profile")
+                flash("Successfully edited account", "alert-success")
                 return redirect(url_for('users.show', user_id=user.id))
             except IntegrityError:
-                flash("Username/email has already been registered")
+                flash("Username/email has already been registered", "alert-danger")
                 db.session.rollback()
-                return render_template('users/edit.html', user=user, form=form)    
+                return render_template('users/edit.html', user=user, form=form)
+        from IPython import embed; embed()
+        flash("Please correct errors below and try again.", "alert-danger")   
         return render_template('users/edit.html', user=user, form=form)
     if request.method == b'DELETE':
         try:
             validate_csrf(request.form.get('csrf_token'))
         except ValidationError:
-            flash("There was a problem deleting your account")
+            flash("There was a problem deleting your account", "alert-danger")
             return render_template('users/show.html', user=user)
         db.session.delete(user)
         db.session.commit()
         logout_user()
-        flash("Sucessfully deleted account")
+        flash("Sucessfully deleted account. Hope you return soon!", "alert-info")
         return redirect(url_for('users.login'))
-    return render_template('users/show.html', user=user)
+    return render_template('users/show.html', user=user, favorites=user.favorites.all())
 
 @users_blueprint.route('/<int:user_id>/edit')
 @login_required
@@ -114,19 +114,17 @@ def edit_password(user_id):
                 user.password = bcrypt.generate_password_hash(request.form['new_password']).decode('UTF-8')
                 db.session.add(user)
                 db.session.commit()
-                flash("Successfully updated password")
+                flash("Successfully updated password", "alert-success")
                 return redirect(url_for('users.index'))
-            flash("Passwords do not match. Please try again.")
+            flash("Passwords do not match. Please try again.", "alert-danger")
             return render_template("users/edit_password.html", form=form, user=user)
-        flash("Please correct errors and try again.")
+        flash("Please correct errors below and try again.", "alert-danger")
         return render_template("users/edit_password.html", form=form, user=user)
     return render_template('users/edit_password.html', form=form, user=user)
-
-
 
 @users_blueprint.route('/logout', methods=['GET','POST'])
 @login_required
 def logout():
     logout_user()
-    flash("Sucessfully logged out")
+    flash("Sucessfully logged out", "alert-success")
     return redirect(url_for('users.login'))

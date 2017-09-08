@@ -1,14 +1,13 @@
 
-
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"/>
 	<link href="http://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/map.css') }}">
   
-  {% extends 'base.html' %}
+{% extends 'base.html' %}
   
-  {% block input %}
-		<li><input type="text" id="input-location" autocomplete="off" placeholder="Map..."></li>
-	{% endblock %}
-
+{% block input %}
+	<li><input type="text" id="input-location" autocomplete="off" placeholder="Map..."></li>
+{% endblock %}
 
 {% block content %}
 	<div id="map"></div>
@@ -35,11 +34,9 @@
       <div id="timezone"></div>
   </div>
 
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq7BzFiy1D0t2BD3_K9eRHqK8I5uatyxg"></script>
 
-
-
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq7BzFiy1D0t2BD3_K9eRHqK8I5uatyxg&callback=initMap" async defer></script>
-
+  <script type="text/javascript" src="{{ url_for('static', filename='js/helpers.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
 
 {% endblock %}

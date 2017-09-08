@@ -16,14 +16,15 @@ h1 {
 }
 
 #landing-header h1 {
-    color: #fff;
+    font-family: 'Lobster', cursive;
+    color: green;
 }
 
 .slideshow { 
     position: fixed;
     /*will take up entire page */
     width: 100%;
-    height: 80%;
+    height: 100%;
     /*top left corner of page with top and left having position 0*/
     top: 10;
     left: 10;
@@ -41,7 +42,7 @@ h1 {
     top: 0;
     left: 0;
     /*cover allows the images to take up the entire space of the page */
-    background-size: 80%;
+    background-size: cover;
     /*50% 50% will center images perfectly on page */
     background-position: 50% 50%;
     /*no repeat vertically or horizontally of any background image */

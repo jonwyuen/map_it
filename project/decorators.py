@@ -6,7 +6,7 @@ def ensure_correct_user(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
         if kwargs.get('user_id') != current_user.id:
-            flash('Not Authorized')
+            flash('Not Authorized', "alert-danger")
             return redirect(url_for('users.index'))
         return fn(*args, **kwargs)
     return wrapper

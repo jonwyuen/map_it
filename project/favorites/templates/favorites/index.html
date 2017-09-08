@@ -1,4 +1,4 @@
-{% extends '/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
   <div class="container">
@@ -9,8 +9,8 @@
           <th>Location</th>
           <th>Latitude</th>
           <th>Longitude</th>
-          <th>MapIt</th>
-          <th>Unfavorite</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +19,7 @@
           <td>{{ favorite.location }}</td>
           <td>{{ favorite.latitude }}</td>
           <td>{{ favorite.longitude }}</td>
-          <td><a class="btn btn-success" href="{{ url_for('users.map', user_id=user.id, loc=favorite.location, lat=favorite.latitude, long=favorite.longitude) }}">MapIt</a></td>
+          <td><a class="btn btn-success" id="mapit-btn" href="{{ url_for('users.map', user_id=user.id, loc=favorite.location, lat=favorite.latitude, long=favorite.longitude) }}">MapIt</a></td>
           <td>
            <form action="{{ url_for('favorites.show', user_id=user.id, fav_id=favorite.id) }}?_method=DELETE" method="POST">
               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
