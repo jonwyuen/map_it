@@ -1,4 +1,6 @@
 function initMap(lat, long, zoom) {
+  lat = lat || 15;
+  long = long || -15
   let map = new google.maps.Map($('#map')[0], {
     center: {
       lat: lat,
@@ -6,7 +8,9 @@ function initMap(lat, long, zoom) {
     },
     zoom: zoom,
     mapTypeId: google.maps.MapTypeId.HYBRID,
-    disableDefaultUI: true
+    disableDefaultUI: true,
+    zoomControl: true,
+    streetViewControl: true
   });
   map.setOptions({ minZoom: 3, maxZoom: 15 });
 };
@@ -19,6 +23,10 @@ function parseQuery(qstr) {
     query[decodeURIComponent(b[0])] = decodeURIComponent(b[1] || '');
   }
   return query;
+}
+
+function checkQuery(){
+  return queryObj.loc && queryObj.lat && queryObj.long;
 }
 
 function getUserFavorites(user){

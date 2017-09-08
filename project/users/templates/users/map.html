@@ -11,9 +11,9 @@
 
 {% block content %}
 	<div id="map"></div>
+  
   <input type="hidden" id="user" name="user_id" value="{{current_user.id}}">
   <input type="hidden" id="csrf_token" name="csrf_token" value="{{ csrf_token() }}">
-  
 
 	<div id="search-box">
 		<div id="show-location" class="alert" role="alert">

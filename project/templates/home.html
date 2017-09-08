@@ -1,32 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MapIt</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
 
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
-{% extends 'base.html' %}
-{% block home %}
+</head>
+<body>
 
+<div class="container" id="landing-header">
+  <h1>MapIt</h1>
+  {% if current_user.is_authenticated %}
+  <a href="{{ url_for('users.show', user_id=current_user.id) }}" class="btn btn-lg btn-default btn-home">Welcome Back</a>
+  {% else %}
+  <a href="{{ url_for('users.signup') }}" class="btn btn-lg btn-success btn-home">Get Started</a>
+  {% endif %}
+</div>
 
-    <div id="landing-header">
-    <h1>Welcome to Mapit!</h1>
-    {% if current_user.is_authenticated %}
-    <a href="{{ url_for('users.map', user_id=current_user.id) }}" class="btn btn-lg btn-default btn-outline">Start Mapping</a>
-    {% else %}
-    <a href="{{ url_for('users.signup') }}" class="btn btn-lg btn-default btn-outline">Get Started</a>
-    {% endif %}
-    </div>
-    
-    <ul class="slideshow">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-
-
-
-
-{% endblock %}
-
-
+<div class=container-fluid></div>
+  <ul class="slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+  
 </body>
 </html>

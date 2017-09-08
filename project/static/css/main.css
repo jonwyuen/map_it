@@ -9,12 +9,10 @@ body {
   background: linear-gradient(to right, #ffffff, #abbaab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
 .dropdown-menu {
   background-color: green;
   border: none;
 }
-
 
 .navbar {
   background-color: green;
@@ -23,18 +21,18 @@ body {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
- 
- .navbar-default .navbar-brand {
+
+.navbar-default .navbar-brand {
   color: white;
   font-size: 200%;
 }
 
- .navbar-default ul.navbar-nav li a{
-    color: white;
-    font-size: 150%;
- }
+.navbar-default ul.navbar-nav li a{
+  color: white;
+  font-size: 150%;
+}
 
- .navbar-default ul.navbar-nav li a:hover, .navbar-default .navbar-brand:hover {
+.navbar-default ul.navbar-nav li a:hover, .navbar-default .navbar-brand:hover {
   color: green;
   background-color: white;
 }
@@ -56,16 +54,13 @@ body {
 
 table {
   border: 2px solid green;
-/*  font-family: 'Ubuntu', sans-serif;
-*/  font-size: 22px;
+  font-size: 22px;
   margin-top: 20px;
-
 }
 
 
 .table>thead>tr>th {
   border-bottom: 2px solid green;
-
 }
 
 tr {
@@ -87,8 +82,7 @@ tr {
 
 .help-block {
   color: red;
-/*  font-family: 'Ubuntu', sans-serif;
-*/}
+}
 
 .forms {
   background: rgba(230, 230, 230, 0.7);
@@ -107,8 +101,33 @@ tr {
 
 .alert.flash-msg {
   margin-bottom: 0;
-/*  font-family: 'Ubuntu', sans-serif;
-*/}
+  -moz-animation: hideFlash 0s ease-in 5s forwards;
+  /* Firefox */
+  -webkit-animation: hideFlash 0s ease-in 5s forwards;
+  /* Safari and Chrome */
+  -o-animation: hideFlash 0s ease-in 5s forwards;
+  /* Opera */
+  animation: hideFlash 0s ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hideFlash {
+  to {
+    width:0;
+    height:0;
+    padding:0;
+    overflow:hidden;
+  }
+}
+@-webkit-keyframes hideFlash {
+  to {
+    width:0;
+    height:0;
+    padding:0;
+    visibility:hidden;
+  }
+}
 
 .well {
   text-align: center;
@@ -139,15 +158,6 @@ tr {
 }
 
 #empty-heart {
-  color: white;
-}
-
-button a {
-  color: green;
-}
-
-button a:hover, button:hover{
-  text-decoration: none;
   color: white;
 }
 

@@ -8,15 +8,15 @@
         <h3 class="well-text">you have {{ favorites|length }} favorite locations.</h3>
         {% if favorites|length == 0 %}
           <div class="text-center">
-            <button class="btn btn-success btn-outline"><a href="{{ url_for('users.map', user_id=user.id) }}">Start Mapping</a></button>
+            <a class="btn btn-success btn-outline" href="{{ url_for('users.map', user_id=user.id) }}">Start Mapping</a>
           </div>
         {% else %}
           <div class="text-center">
-            <button class="btn btn-success btn-outline"><a href="{{ url_for('favorites.index', user_id=user.id) }}">View Favorite Locations</a></button>
+            <a class="btn btn-success btn-outline" href="{{ url_for('favorites.index', user_id=user.id) }}">View Favorite Locations</a>
           </div>
           <h4 class="well-text">Or</h4>
           <div class="text-center">
-            <button class="btn btn-success btn-outline"><a href="{{ url_for('users.map', user_id=user.id) }}">Map More Locations</a></button>
+            <a class="btn btn-success btn-outline" href="{{ url_for('users.map', user_id=user.id) }}">Map More Locations</a>
           </div>
         {% endif %}
 

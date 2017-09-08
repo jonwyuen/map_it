@@ -3,9 +3,10 @@ let currTimezone = "Local Timezone";
 let timezoneOffset = 0;
 let $current_user = $('#user').val();
 let queryObj = parseQuery(window.location.search);
+let initZoom = checkQuery() ? 12 : 3;
 
 setInterval(initClock, 1000);
-initMap(+queryObj.lat || 15, +queryObj.long || -15, window.location.search ? 12 : 3);
+initMap(+queryObj.lat, +queryObj.long, initZoom);
 
 $('#search-box').draggable({ cancel: '#show-location' }) 
 $('#info-panel').draggable({ cancel: '#loc-msg, #weather-msg' }) 
@@ -107,7 +108,7 @@ function getWeatherData() {
 	});
 };
 
-if(window.location.search){
+if(checkQuery()){
 	$('#info-panel').css("visibility", "visible")
 	getTimeZoneOffset(queryObj.lat, queryObj.long).then(function(timeData){
 			timezoneOffset = (timeData["rawOffset"] + timeData["dstOffset"]) * 1000;

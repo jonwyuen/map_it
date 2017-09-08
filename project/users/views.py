@@ -76,7 +76,6 @@ def show(user_id):
                 flash("Username/email has already been registered", "alert-danger")
                 db.session.rollback()
                 return render_template('users/edit.html', user=user, form=form)
-        from IPython import embed; embed()
         flash("Please correct errors below and try again.", "alert-danger")   
         return render_template('users/edit.html', user=user, form=form)
     if request.method == b'DELETE':
