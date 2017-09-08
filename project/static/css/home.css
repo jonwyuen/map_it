@@ -77,7 +77,6 @@ a.btn-home:hover {
   animation-delay: 24s; 
 }
 
-
 @keyframes imageAnimation { 
   0% { 
     opacity: 0; 
@@ -93,7 +92,6 @@ a.btn-home:hover {
   30% {
     opacity: 0;
   }
-
 }
 
 /* Older browser support - .no-cssanimations class added by modernizr */

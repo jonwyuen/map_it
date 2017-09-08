@@ -39,7 +39,7 @@ function getUserFavorites(user){
 function getTimeZoneOffset(lat, long){
   return $.ajax({
     method: "GET",
-    url: `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${long}&timestamp=${(new Date().getTime() / 1000).toFixed(0)}&key=AIzaSyD1tfXg009CO_oaKRZzJlSOyBj9AQEzcp8`
+    url: `//maps.googleapis.com/maps/api/timezone/json?location=${lat},${long}&timestamp=${(new Date().getTime() / 1000).toFixed(0)}&key=AIzaSyD1tfXg009CO_oaKRZzJlSOyBj9AQEzcp8`
   });
 }
 

@@ -21,7 +21,7 @@ $('#input-location').on('keyup', function(e) {
 		let selectedLocation = encodeURIComponent($inputLocationVal);
 		$.ajax({
 			method: "GET",
-			url: `https://maps.googleapis.com/maps/api/geocode/json?address=${selectedLocation}&key=AIzaSyCq7BzFiy1D0t2BD3_K9eRHqK8I5uatyxg`
+			url: `//maps.googleapis.com/maps/api/geocode/json?address=${selectedLocation}&key=AIzaSyCq7BzFiy1D0t2BD3_K9eRHqK8I5uatyxg`
 		}).then(function(data){
 			if(data['status'] === 'OK') {
 				locationData = data;
@@ -92,7 +92,7 @@ function getWeatherData() {
 	latitude = +queryObj.lat || latitude
 	longitude = +queryObj.long || longitude
 	$.ajax({
-		url: `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=4a0118cae1472d927f59a66fa9bdc135`,
+		url: `//api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=4a0118cae1472d927f59a66fa9bdc135`,
 		type: "GET"
 	}).then(function(weatherData){
 			let description = weatherData['weather'][0]['description'];
