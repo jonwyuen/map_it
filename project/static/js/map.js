@@ -92,7 +92,7 @@ function getWeatherData() {
 	latitude = +queryObj.lat || latitude
 	longitude = +queryObj.long || longitude
 	$.ajax({
-		url: `//api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=4a0118cae1472d927f59a66fa9bdc135`,
+		url: `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=4a0118cae1472d927f59a66fa9bdc135`,
 		type: "GET"
 	}).then(function(weatherData){
 			let description = weatherData['weather'][0]['description'];
