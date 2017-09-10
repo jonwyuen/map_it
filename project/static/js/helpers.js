@@ -27,7 +27,7 @@ function parseQuery(qstr) {
 }
 
 function checkQuery(){
-  return queryObj.loc && queryObj.lat && queryObj.long && queryObj.zoom;
+  return queryObj.loc && queryObj.lat && queryObj.long;
 }
 
 function getUserFavorites(user){
@@ -40,7 +40,7 @@ function getUserFavorites(user){
 function getTimeZoneOffset(lat, long){
   return $.ajax({
     method: "GET",
-    url: `//maps.googleapis.com/maps/api/timezone/json?location=${lat},${long}&timestamp=${(new Date().getTime() / 1000).toFixed(0)}&key=AIzaSyD1tfXg009CO_oaKRZzJlSOyBj9AQEzcp8`
+    url: `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${long}&timestamp=${(new Date().getTime() / 1000).toFixed(0)}&key=AIzaSyD1tfXg009CO_oaKRZzJlSOyBj9AQEzcp8`
   });
 }
 

@@ -21,7 +21,7 @@ $('#input-location').on('keyup', function(e) {
 		let selectedLocation = encodeURIComponent($inputLocationVal);
 		$.ajax({
 			method: "GET",
-			url: `//maps.googleapis.com/maps/api/geocode/json?address=${selectedLocation}&key=AIzaSyCq7BzFiy1D0t2BD3_K9eRHqK8I5uatyxg`
+			url: `https://maps.googleapis.com/maps/api/geocode/json?address=${selectedLocation}&key=AIzaSyCq7BzFiy1D0t2BD3_K9eRHqK8I5uatyxg`
 		}).then(function(data){
 			if(data['status'] === 'OK') {
 				locationData = data;
