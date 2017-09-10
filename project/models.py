@@ -40,11 +40,13 @@ class Favorite(db.Model):
     location = db.Column(db.Text)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
+    zoom = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    def __init__(self, location, latitude, longitude, user_id):
+    def __init__(self, location, latitude, longitude, zoom, user_id):
         self.location = location
         self.latitude = latitude
         self.longitude = longitude
+        self.zoom = zoom
         self.user_id = user_id
 

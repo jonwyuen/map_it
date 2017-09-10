@@ -51,34 +51,35 @@ html, body, #map{
 }
 
 #search-list {
-	width: 100%;
-	font-size: 130%;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+  width: 100%;
+  font-size: 130%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 #search-list li {
-	border: 1px solid green;
-	margin-top: -1px;
-	background-color: #f6f6f6;
-	padding: 12px;
-	display: block;
+  border: 1px solid green;
+  margin-top: -1px;
+  background-color: #f6f6f6;
+  padding: 12px;
+  display: block;
   border-radius: 2px ;
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #info-panel {
   visibility: hidden;
-	position: absolute;
-	width: 25%;
-	top: 70px;
-	left: 20px;
-	border: 2px solid green;
-	border-radius: 25px;
-	background: rgba(230, 230, 230, 0.4);
-	font-family: 'Roboto', sans-serif;
-	line-height: 40px;
+  position: absolute;
+  width: 25%;
+  top: 70px;
+  left: 20px;
+  border: 2px solid green;
+  border-radius: 25px;
+  background: rgba(230, 230, 230, 0.4);
+  font-family: 'Roboto', sans-serif;
+  line-height: 40px;
+  cursor: move;
 }
 
 div.alert, div.alert-info {
@@ -86,10 +87,11 @@ div.alert, div.alert-info {
   line-height: 20px;
   font-size: 90%;
   text-align: center; 
-	background-color: white;
+  background-color: white;
   color: green;
   border: 2px solid green;
   border-radius: 10px;
+  cursor: default;
 }
 
 .glyphicon {
@@ -107,8 +109,7 @@ div.alert, div.alert-info {
   height: 150px;
   width: 400px;
   top: 70px;
-  right: 200px;
-  z-index: 5;
+  right: 20px;
   border: 2px solid green;
   border-radius: 10px;
   background: rgba(230, 230, 230, 0.8);

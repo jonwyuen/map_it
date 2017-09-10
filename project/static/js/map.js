@@ -1,9 +1,9 @@
-let fullLocation, latitude, longitude, zoomLevel, locationData, sunrise, sunset, typedLocation;
+let fullLocation, latitude, longitude, zoomLevel, locationData, typedLocation;
 let currTimezone = "Local Timezone";
 let timezoneOffset = 0;
 let $current_user = $('#user').val();
 let queryObj = parseQuery(window.location.search);
-let initZoom = checkQuery() ? 12 : 3;
+let initZoom = checkQuery() ? +queryObj.zoom : 3;
 
 setInterval(initClock, 1000);
 initMap(+queryObj.lat, +queryObj.long, initZoom);
@@ -15,7 +15,7 @@ $('#digital-clock').draggable();
 $('#input-location').on('keyup', function(e) {
 	$('#info-panel').css("visibility", "hidden")
 	$('#search-box').css("visibility", "visible")
-	if(!$('#input-location').val() !== '') {
+	if($('#input-location').val() !== '') {
 		let $inputLocationVal = $('#input-location').val()
 		typedLocation = $inputLocationVal
 		let selectedLocation = encodeURIComponent($inputLocationVal);
@@ -26,7 +26,6 @@ $('#input-location').on('keyup', function(e) {
 			if(data['status'] === 'OK') {
 				locationData = data;
 				$('#search-list').empty();
-
 				data['results'].forEach(function(val, idx){
 					$('#search-list').append(`<li id=${idx}>${val['formatted_address']}</li>`);
 				})
@@ -42,7 +41,9 @@ $('#search-list').on('click', function(e) {
 	latitude = result['geometry']['location']['lat'];
 	longitude = result['geometry']['location']['lng'];
 	zoomLevel = result['address_components'].length * 3;
-	if(result['address_components'].length <= 1) zoomLevel = 7
+	if(result['address_components'].length <= 2) zoomLevel = 7;
+	if(result['types'].includes("country")) zoomLevel = 6;
+	if(result['types'].includes("locality")) zoomLevel = 12;
 	initNewMap();
 	$('#input-location').val('');
 });
@@ -55,8 +56,8 @@ $('#loc-msg').on('click', ".glyphicon", function(e) {
 
 		let $current_user = $('#user').val()
 		let $csrf_token = $('#csrf_token').val()
-		let $latStrong = +$('.lat-strong').data('lat') || queryObj.lat
-		let $longStrong = +$('.long-strong').data('long') || queryObj.long
+		let $latStrong = +$('.lat-strong').data('lat')
+		let $longStrong = +$('.long-strong').data('long')
 
 		$.ajax({
 			method: "POST", 
@@ -65,12 +66,26 @@ $('#loc-msg').on('click', ".glyphicon", function(e) {
 				'csrf_token': $csrf_token,
 				'location': fullLocation,
 				'latitude': $latStrong,
-				'longitude': $longStrong
+				'longitude': $longStrong,
+				'zoom': +zoomLevel
 			},
 			dataType: 'json',
 		})
 	}
 })
+
+if(checkQuery()){
+	$('#info-panel').css("visibility", "visible")
+	getTimeZoneOffset(queryObj.lat, queryObj.long).then(function(timeData){
+			timezoneOffset = (timeData["rawOffset"] + timeData["dstOffset"]) * 1000;
+			currTimezone = timeData["timeZoneName"];
+	});
+	getUserFavorites($current_user).then(function(favoritesList){
+		queryObj.loc = queryObj.loc.replace(/([+])/g, " ")
+		getFavLocHtml(favoritesList, queryObj.loc, latitude, +queryObj.lat, longitude, +queryObj.long)
+		getWeatherData();
+	})	
+}
 
 function initNewMap() {
 	$('#info-panel').css("visibility", "visible")
@@ -108,19 +123,6 @@ function getWeatherData() {
 	});
 };
 
-if(checkQuery()){
-	$('#info-panel').css("visibility", "visible")
-	getTimeZoneOffset(queryObj.lat, queryObj.long).then(function(timeData){
-			timezoneOffset = (timeData["rawOffset"] + timeData["dstOffset"]) * 1000;
-			currTimezone = timeData["timeZoneName"];
-	});
-	getUserFavorites($current_user).then(function(favoritesList){
-		queryObj.loc = queryObj.loc.replace(/([+])/g, " ")
-		getFavLocHtml(favoritesList, queryObj.loc, latitude, +queryObj.lat, longitude, +queryObj.long)
-		getWeatherData();
-	})	
-}
-
 function initClock() {
 
 	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -148,7 +150,3 @@ function initClock() {
   $("#date").html(`${days[day]}, ${date} ${months[month]} ${year}`);
   $("#timezone").html(`${currTimezone}`);
 }
-
-
-
-

@@ -12,7 +12,7 @@ favorites_blueprint = Blueprint(
     template_folder='templates'
 )
 
-@favorites_blueprint.route('/', methods=['GET', 'POST', 'DELETE'])
+@favorites_blueprint.route('/', methods=['GET', 'POST'])
 @login_required
 @ensure_correct_user
 def index(user_id):
@@ -20,7 +20,7 @@ def index(user_id):
     if request.method == 'POST':
         form = FavoriteForm(request.form)
         if form.validate():
-            favorite = Favorite(form.location.data, float(form.latitude.data), float(form.longitude.data), user.id)
+            favorite = Favorite(form.location.data, float(form.latitude.data), float(form.longitude.data), int(form.zoom.data), user.id)
             db.session.add(favorite)
             db.session.commit()
             return jsonify('Created')
@@ -36,8 +36,7 @@ def list(user_id):
         fav_list.append(dict(loc=fav.location))
     return jsonify(fav_list)
 
-
-@favorites_blueprint.route('/<int:fav_id>', methods=['GET', 'DELETE'])
+@favorites_blueprint.route('/<int:fav_id>', methods=['DELETE'])
 @login_required
 @ensure_correct_user
 def show(user_id, fav_id):
@@ -51,6 +50,5 @@ def show(user_id, fav_id):
             return render_template('users/show.html', user=user)
         db.session.delete(favorite)
         db.session.commit()
-        flash("Sucessfully removed favorite", "alert-info")
+        flash("Sucessfully removed favorite", "alert-success")
         return redirect(url_for('favorites.index', user_id=user.id))
-    return render_template()

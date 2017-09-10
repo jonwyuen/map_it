@@ -10,9 +10,10 @@ function initMap(lat, long, zoom) {
     mapTypeId: google.maps.MapTypeId.HYBRID,
     disableDefaultUI: true,
     zoomControl: true,
-    streetViewControl: true
+    streetViewControl: true,
+    rotateControl: true
   });
-  map.setOptions({ minZoom: 3, maxZoom: 18 });
+  map.setOptions({ minZoom: 3, maxZoom: 20 });
 };
 
 function parseQuery(qstr) {
@@ -26,7 +27,7 @@ function parseQuery(qstr) {
 }
 
 function checkQuery(){
-  return queryObj.loc && queryObj.lat && queryObj.long;
+  return queryObj.loc && queryObj.lat && queryObj.long && queryObj.zoom;
 }
 
 function getUserFavorites(user){
@@ -75,4 +76,3 @@ function getFavLocHtml(favList, loc, dataLat, lat, dataLong, long){
     `
   $("#loc-msg").html(newHtml)
 }
-

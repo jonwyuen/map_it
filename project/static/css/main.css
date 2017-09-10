@@ -1,17 +1,12 @@
 body {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
   margin: 0 auto;
   font-family: 'Ubuntu', sans-serif;
   padding-top: 50px;
   background: #abbaab;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffffff, #abbaab);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ffffff, #abbaab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.dropdown-menu {
-  background-color: green;
-  border: none;
 }
 
 .navbar {
@@ -42,6 +37,11 @@ body {
   background-color: white;
 }
 
+.navbar-nav>li>.dropdown-menu {
+  background-color: green;
+  border: none;
+}
+
 .navbar-default ul.dropdown-menu li a:hover {
   background-color: white;
   color: green;
@@ -53,25 +53,59 @@ body {
 }
 
 table {
-  border: 2px solid green;
-  font-size: 22px;
   margin-top: 20px;
+  border-collapse: separate;
 }
 
+table thead tr th:first-child {
+  border-top-left-radius: 10px;
+}
 
 .table>thead>tr>th {
+  font-size: 20px;
+  border-top: 2px solid green;
   border-bottom: 2px solid green;
 }
 
+.table>thead:first-child>tr:first-child>th {
+  border-top: 2px solid green;
+}
+
+.table>thead>tr>th:first-child {
+  border-left: 2px solid green;
+  border-top-left-radius: 10px;
+}
+
+.table>thead>tr>th:last-child {
+  border-right: 2px solid green;
+  border-top-right-radius: 10px;
+}
+
+.table>tbody>tr>td  {
+  vertical-align: middle;
+  border-bottom: 2px solid green;
+  border-top: none;
+}
+
+.table>tbody>tr>td:first-child{
+  border-left: 2px solid green;
+}
+
+.table>tbody>tr>td:last-child{
+  border-right: 2px solid green;
+}
+
 tr {
-  border: 2px solid green;
   font-size: 18px;
   background-color: transparent;
 }
 
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
 
-.table>tbody>tr>td {
-  vertical-align: middle;
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 #table-header {

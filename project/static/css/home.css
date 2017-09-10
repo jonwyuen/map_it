@@ -1,5 +1,6 @@
 body {
   background-color: #000;
+  margin: 0 auto;
 }
 
 h1 {
@@ -53,7 +54,7 @@ a.btn-home:hover {
   position: absolute;
   top: 0;
   left: 0;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   opacity: 0;
@@ -62,18 +63,18 @@ a.btn-home:hover {
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url('../images/mapit1.png'); 
+  background-image: url('../images/mapit-1.jpg'); 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url('../images/mapit2.png');
+  background-image: url('../images/mapit-2.jpg');
   animation-delay: 8s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url('../images/mapit3.png');
+  background-image: url('../images/mapit-3.jpg');
   animation-delay: 16s; 
   }
 .slideshow li:nth-child(4) { 
-  background-image: url('../images/mapit4.png');
+  background-image: url('../images/mapit-4.jpg');
   animation-delay: 24s; 
 }
 
